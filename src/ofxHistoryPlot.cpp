@@ -48,6 +48,8 @@ ofxHistoryPlot::ofxHistoryPlot(float * val, string varName, float maxHistory, bo
 	scissor = false;
 	lineColor = ofColor(255,0,0);
 	drawFromRight = false;
+
+    font.loadFont("Verdana.ttf", 20);
 }
 
 void ofxHistoryPlot::setMaxHistory(int max){
@@ -209,13 +211,17 @@ void ofxHistoryPlot::draw(float x, float y , float w, float h){
 	float cVal;
 	if(haveData) cVal = *values.rbegin();
 	if(drawTitle){
-		string text = varName + string(haveData ? (" " + ofToString(cVal, precision)) : "");
-		ofDrawBitmapString(text, x + w - (text.length()) * 8  , y + 10);
+		string text = string(haveData ? (" " + ofToString(cVal, precision)) : "");
+        font.drawString(text, x + w - (text.length()) * 8  , y + 10);
+        ofSetColor(85);
+        text = varName;
+        font.drawString(text, 1 + x , y + 10);
+		//font.drawString(text, x + w - (text.length()) * 8  , y + 10);
 	}
 	if ( showNumericalInfo ){
 		ofSetColor(85);
-		ofDrawBitmapString(ofToString(plotHigh, precision), 1 + x , y + 10);
-		ofDrawBitmapString(ofToString(plotLow, precision), 1 + x , y + h - 1);
+		font.drawString(ofToString(plotHigh, precision), 1 + x , y + 10);
+		font.drawString(ofToString(plotLow, precision), 1 + x , y + h - 1);
 	}
 
 	for(int i = 0; i < horizontalGuides.size(); i++){

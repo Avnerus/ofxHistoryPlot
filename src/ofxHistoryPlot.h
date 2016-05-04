@@ -132,6 +132,8 @@ class ofxHistoryPlot{
 		ofVboMesh smoothPlotMesh;
 
 		ofRectangle prevRect;
+
+        ofTrueTypeFont font;
 };
 
 #endif
