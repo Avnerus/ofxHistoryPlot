@@ -60,6 +60,7 @@ class ofxHistoryPlot{
 		float getHigerRange();
 		float getLowestValue();
 		float getHigestValue();
+        ofVboMesh* getPlotMesh();
 
 		void setShowSmoothedCurve(bool show){showSmoothedPlot = show;}
 		void setSmoothFilter(float filter){smoothFactor = filter;};
@@ -68,6 +69,8 @@ class ofxHistoryPlot{
 		deque<float>& getValues(){ return values; }
     
         string getVariableName();
+
+        ofMatrix4x4 getMeshMatrix(float x, float y, float w, float h);
 
 	private:
 

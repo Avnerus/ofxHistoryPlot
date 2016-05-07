@@ -151,6 +151,7 @@ void ofxHistoryPlot::refillPlotMesh(ofVboMesh& mesh, deque<float> & vals, float 
 	for (int i =  start; i < vals.size(); i+= drawSkip){
 		mesh.addVertex(ofVec3f(i, vals[i]));
 	}
+
 }
 
 
@@ -316,6 +317,21 @@ float ofxHistoryPlot::getHigerRange(){
 	return 1.0;
 }
 
+ofVboMesh* ofxHistoryPlot::getPlotMesh() {
+    return &plotMesh;
+}
+
+ofMatrix4x4 ofxHistoryPlot::getMeshMatrix(float x, float y, float w, float h) {
+    ofMatrix4x4 m;  
+    if (respectBorders) h -= 12;
+    m.glTranslate(x,y + h + (respectBorders ? 12 : 0) - 1, 0);
+    float plotValuesRange = manualHighest - manualLowest;
+    float yscale = (h-1) / plotValuesRange;
+    m.glScale(w / MAX_HISTORY, -yscale, 0);
+    m.glTranslate(0, -manualLowest, 0);
+
+    return m;
+}
 
 void ofxHistoryPlot::setLowerRange(float low){
 	rangeMode = RANGE_LOWER_FIXED;
