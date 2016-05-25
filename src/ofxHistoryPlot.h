@@ -20,7 +20,7 @@ class ofxHistoryPlot{
 
 	public :
 
-		ofxHistoryPlot(float * val, string varName, float maxHistory, bool autoUpdate_ = true);
+		ofxHistoryPlot(float * val, string varName, float maxHistory, int fontSize, bool autoUpdate_ = true);
 		
 		void update( float val = numeric_limits<float>::quiet_NaN() );	//adds in the plot current value of the specified var, 
 											//usually you would call this once per frame if not autoUpdate_ == false for the graph to update
@@ -136,6 +136,7 @@ class ofxHistoryPlot{
 
 		ofRectangle prevRect;
 
+        int fontSize;
         ofTrueTypeFont font;
 };
 

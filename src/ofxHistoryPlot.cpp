@@ -10,7 +10,7 @@
 #include "ofxHistoryPlot.h"
 #include <float.h>
 
-ofxHistoryPlot::ofxHistoryPlot(float * val, string varName, float maxHistory, bool autoUpdate_){
+ofxHistoryPlot::ofxHistoryPlot(float * val, string varName, float maxHistory, int fontSize, bool autoUpdate_){
 	
 	autoUpdate = autoUpdate_;
 	this->varName = varName;
@@ -49,7 +49,7 @@ ofxHistoryPlot::ofxHistoryPlot(float * val, string varName, float maxHistory, bo
 	lineColor = ofColor(255,0,0);
 	drawFromRight = false;
 
-    font.loadFont("Verdana.ttf", 20);
+    font.loadFont("Verdana.ttf", fontSize);
 }
 
 void ofxHistoryPlot::setMaxHistory(int max){
